@@ -17,7 +17,7 @@ def load_and_prep_image(image):
         image = tf.image.grayscale_to_rgb(image)
     return image
 
-model = tf.keras.models.load_model("Model")
+model = tf.keras.model.load_model("Model")
 
 def pred_model(imgpath):
     img_2 = load_and_prep_image(imgpath)
