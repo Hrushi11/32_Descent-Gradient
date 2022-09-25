@@ -1814,17 +1814,10 @@ figure.snip1107 a {
   color: #ffffff;
 }
 figure.snip1107.blue {
-  background: #0a212f;
+  background: #1A1D94;
 }
 figure.snip1107.blue h3 {
-  background: #2980b9;
-}
-
-figure.snip1107.blue {
-  background: #0a453e;
-}
-figure.snip1107.blue h3 {
-  background: #008374;
+  background: #1A1D94;
 }
 
 figure.snip1107.red {
@@ -1848,10 +1841,10 @@ figure.snip1107.yellow h3 {
 }
 
 figure.snip1107.navy {
-  background: #000000;
+  background: #010246;
 }
 figure.snip1107.navy h3 {
-  background: #34495e;
+  background: #010246;
 }
 figure.snip1107:hover img,
 figure.snip1107.hover img {
@@ -1872,4 +1865,11 @@ figure.snip1107.hover figcaption h3 {
   transform: translate3d(0%, -100%, 0);
 }
 
-
+.aligner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0;
+  height: 300%;
+}

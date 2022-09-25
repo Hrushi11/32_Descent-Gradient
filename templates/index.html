@@ -291,96 +291,93 @@
     <!-- ======= Choose Diseases ======= -->
 
 
-    <div style="
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      flex-flow: wrap;
-                      margin: 0;
-                      height: 300%;">
-                    <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_SVM}}{{confidence_SVM}}</span></div>
-                        <div>
-                          <h3>SVM</h3>
-                        </div><a href="/stats_SVM"></a>
-                      </figcaption>
-                    </figure>
+    <div style="display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0;
+  height: 300%;">
+      <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
+        <figcaption>
+          <div><span>{{predicted_class_SVM}}{{confidence_SVM}}</span></div>
+          <div>
+            <h3>Heart Disease</h3>
+          </div><a href="/stats_SVM"></a>
+        </figcaption>
+      </figure>
 
-                    <figure class="snip1107 yellow"><img src="static/assets/img/choose/1.png" alt="sample12"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_KNN}}{{confidence_KNN}}</span></div>
-                        <div>
-                          <h3>KNN</h3>
-                        </div><a href="/stats_KNN"></a>
-                      </figcaption>
-                    </figure>
-
+      <figure class="snip1107 navy"><img src="static/assets/img/choose/1.png" alt="sample12"/>
+        <figcaption>
+          <div><span>{{predicted_class_KNN}}{{confidence_KNN}}</span></div>
+          <div>
+            <h3>Parkinson's Disease</h3>
+          </div><a href="/stats_KNN"></a>
+        </figcaption>
+      </figure>
 
 
-                    <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_ANN}}{{confidence_ANN}}</span></div>
-                        <div>
-                          <h3>ANN</h3>
-                        </div><a href="/stats_ANN"></a>
-                      </figcaption>
-                    </figure>
 
+      <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
+        <figcaption>
+          <div><span>{{predicted_class_ANN}}{{confidence_ANN}}</span></div>
+          <div>
+            <h3>Diabetes</h3>
+          </div><a href="/stats_ANN"></a>
+        </figcaption>
+      </figure>
 
 
 
 
-                    <figure class="snip1107 yellow"><img src="static/assets/img/choose/1.png" alt="sample12"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_DT}}{{confidence_DT}}</span></div>
-                        <div>
-                          <h3>DT</h3>
-                        </div><a href="/stats_DT"></a>
-                      </figcaption>
-                    </figure>
+
+      <figure class="snip1107 navy"><img src="static/assets/img/choose/1.png" alt="sample12"/>
+        <figcaption>
+          <div><span>{{predicted_class_DT}}{{confidence_DT}}</span></div>
+          <div>
+            <h3>Brain Tumor</h3>
+          </div><a href="/stats_DT"></a>
+        </figcaption>
+      </figure>
 
 
-                    <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_CNN}}{{confidence_CNN}}</span></div>
-                        <div>
-                          <h3>CNN</h3>
-                        </div><a href="/stats_CNN"></a>
-                      </figcaption>
-                    </figure>
+      <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
+        <figcaption>
+          <div><span>{{predicted_class_CNN}}{{confidence_CNN}}</span></div>
+          <div>
+            <h3>Pneumonia</h3>
+          </div><a href="/stats_CNN"></a>
+        </figcaption>
+      </figure>
 
-                    <figure class="snip1107 yellow"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_Hybrid}}{{confidence_Hybrid}}</span></div>
-                        <div>
-                          <h3>Hybrid</h3>
-                        </div><a href="/stats_Hybrid"></a>
-                      </figcaption>
-                    </figure>
+      <figure class="snip1107 navy"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
+        <figcaption>
+          <div><span>{{predicted_class_Hybrid}}{{confidence_Hybrid}}</span></div>
+          <div>
+            <h3>Hybrid</h3>
+          </div><a href="/stats_Hybrid"></a>
+        </figcaption>
+      </figure>
 
-                    <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
-                      <figcaption>
-                        <div><span>{{predicted_class_Hybrid2}}{{confidence_Hybrid2}}</span></div>
-                        <div>
-                          <h3>Hybrid2</h3>
-                        </div><a href="/stats_Hybrid2"></a>
-                      </figcaption>
-                    </figure>
-
-
+      <figure class="snip1107 blue"><img src="static/assets/img/choose/1.png" alt="sampl31"/>
+        <figcaption>
+          <div><span>{{predicted_class_Hybrid2}}{{confidence_Hybrid2}}</span></div>
+          <div>
+            <h3>Other Diseases</h3>
+          </div><a href="/stats_Hybrid2"></a>
+        </figcaption>
+      </figure>
 
 
-                        <script>
-                      $("figure").mouseleave(
-                        function() {
-                          $(this).removeClass("hover");
-                        }
-                      );
-                      </script>
-                    </div>
+          <script>
+        $("figure").mouseleave(
+          function() {
+            $(this).removeClass("hover");
+          }
+        );
+        </script>
+      </div>
 
-
+    <!-- End Choose -->
 
 
   <!-- ======= Footer ======= -->
