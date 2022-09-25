@@ -1728,3 +1728,148 @@ section {
     margin: -20px 0 30px 0;
   }
 }
+
+
+/*--------------------------------------------------------------
+# Multiple Divs
+--------------------------------------------------------------*/
+
+
+
+/* Included color classes..
+  .red
+  .blue
+  .yellow
+  .navy
+*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+figure.snip1107 {
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 310px;
+  max-height: 220px;
+  width: 100%;
+  background: #000000;
+  text-align: center;
+}
+figure.snip1107 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+figure.snip1107 img {
+  opacity: 1;
+  width: 100%;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+figure.snip1107 figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 18%;
+  right: 18%;
+  height: 100%;
+}
+figure.snip1107 figcaption > div {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 50%;
+}
+figure.snip1107 h3,
+figure.snip1107 span {
+  margin: 0;
+  padding: 10px 15px;
+  display: inline-block;
+  width: 100%;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+figure.snip1107 span {
+  background: #ffffff;
+  color: #4d4d4d;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  -webkit-transform: translate3d(0%, 100%, 0);
+  transform: translate3d(0%, 100%, 0);
+}
+figure.snip1107 h3 {
+  background: #333333;
+  -webkit-transform: translate3d(0%, 0%, 0);
+  transform: translate3d(0%, 0%, 0);
+}
+figure.snip1107 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  color: #ffffff;
+}
+figure.snip1107.blue {
+  background: #0a212f;
+}
+figure.snip1107.blue h3 {
+  background: #2980b9;
+}
+
+figure.snip1107.blue {
+  background: #0a453e;
+}
+figure.snip1107.blue h3 {
+  background: #008374;
+}
+
+figure.snip1107.red {
+  background: #36100c;
+}
+figure.snip1107.red h3 {
+  background: #c0392b;
+}
+figure.snip1107.yellow {
+  background: #583804;
+}
+figure.snip1107.yellow h3 {
+  background: #f39c12;
+}
+
+figure.snip1107.yellow {
+  background: #0d1321;
+}
+figure.snip1107.yellow h3 {
+  background: #1d4c4f;
+}
+
+figure.snip1107.navy {
+  background: #000000;
+}
+figure.snip1107.navy h3 {
+  background: #34495e;
+}
+figure.snip1107:hover img,
+figure.snip1107.hover img {
+  opacity: 0.35;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+figure.snip1107:hover figcaption span,
+figure.snip1107.hover figcaption span {
+  -webkit-transform: translate3d(0%, 0%, 0);
+  transform: translate3d(0%, 0%, 0);
+}
+figure.snip1107:hover figcaption h3,
+figure.snip1107.hover figcaption h3 {
+  -webkit-transform: translate3d(0%, -100%, 0);
+  transform: translate3d(0%, -100%, 0);
+}
+
+
