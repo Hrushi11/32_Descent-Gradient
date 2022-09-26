@@ -91,7 +91,7 @@ def db_form():
                 predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('dep.html', type="csv", disease="db",
+            return render_template('results.html', type="csv", disease="db",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -162,7 +162,7 @@ def hd_form():
                 predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('dep.html', type="csv", disease="hd",
+            return render_template('results.html', type="csv", disease="hd",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -253,7 +253,7 @@ def pk_form():
                 predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('dep.html', type="csv", disease="pk",
+            return render_template('results.html', type="csv", disease="pk",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -370,7 +370,7 @@ def od_form():
             predictions = f"{pred1[0]}" + f'{(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('dep.html', type="csv", disease="od",
+            return render_template('results.html', type="csv", disease="od",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -444,7 +444,7 @@ def success():
                             predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
 
                         if (len(error) == 0):
-                            return render_template('dep.html', type="csv", disease="db",
+                            return render_template('results.html', type="csv", disease="db",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -468,7 +468,7 @@ def success():
                             predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
-                            return render_template('dep.html', type="csv", disease="hd",
+                            return render_template('results.html', type="csv", disease="hd",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -491,7 +491,7 @@ def success():
                             predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
-                            return render_template('dep.html', type="csv", disease="pk",
+                            return render_template('results.html', type="csv", disease="pk",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -514,7 +514,7 @@ def success():
 
                         if len(error) == 0:
 
-                            return render_template('dep.html', type="csv", disease="od",
+                            return render_template('results.html', type="csv", disease="od",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
 
@@ -531,10 +531,10 @@ def success():
 
             if len(error) == 0:
                 if ".csv" in file_name:
-                    return render_template('dep.html', type="csv", predictions=predictions,
+                    return render_template('results.html', type="csv", predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
                 else:
-                    return render_template('dep.html', img=file_name, type="img", predictions=predictions)
+                    return render_template('results.html', img=file_name, type="img", predictions=predictions)
             else:
                 return render_template('index.html', error=error)
     else:
@@ -560,6 +560,10 @@ def parkinsons():
 @app.route('/other_diseases')
 def other_diseases():
     return render_template("other_diseases.html")
+
+@app.route('/pneumonia')
+def other_diseases():
+    return render_template("pneumonia.html")
 
 
 if __name__ == "__main__":

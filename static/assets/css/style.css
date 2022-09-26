@@ -1893,3 +1893,69 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid white;  /* creates padding around scroll thumb */
 }
+
+
+/*--------------------------------------------------------------
+# Table
+--------------------------------------------------------------*/
+
+
+.mystyle {
+  text-align: center;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 70px 0;
+  width: 80%
+  width: 150px;
+
+}
+
+.mystyle thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.mystyle tr:first-child td,
+
+tr td:first-child {
+    font-weight: bold;
+}
+
+
+.mystyle th,
+.mystyle td {
+  padding: 12px 15px;
+}
+
+.mystyle tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff;
+}
+
+<!--.mystyle tbody tr:nth-of-type(even) {-->
+<!--  background-color: #f3f3f3;-->
+<!--}-->
+
+.mystyle tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.mystyle tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+
+#lasteventimg {width:1200px;overflow-x:hidden ;overflow-y:hidden;}
+.lasteventimg ul {list-style:none; display:block;white-space:nowrap;}
+.lasteventimg li {width: 100px;display:inline;}
+
+
+
