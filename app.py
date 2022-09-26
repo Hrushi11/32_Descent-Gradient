@@ -1,5 +1,12 @@
-from flask import Flask, render_template, request
+import os
+import csv
+import pickle
+import sklearn
 import webbrowser
+import numpy as np
+import pandas as pd
+from pnuemonia import pred_model
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
@@ -371,7 +378,7 @@ def od_form():
             return render_template('index.html', error=error)
 
 
-    return render_template("other_diseases.html")
+    return render_template("other_diseases_form.html")
 
 
 def open_csv_2(filepath, filename):
