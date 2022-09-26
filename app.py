@@ -86,9 +86,9 @@ def db_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not diabetic' + f'   {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient does not have Diabetes' + f'   {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient has Diabetes' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('results.html', type="csv", disease="db",
@@ -157,9 +157,9 @@ def hd_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not Heart Disease' + f'   {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient does not have Heart Disease' + f'   {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient has Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('results.html', type="csv", disease="hd",
@@ -248,9 +248,9 @@ def pk_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not Parkinsons' + f'      {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient does not have Parkinsons' + f'      {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
+                predictions = 'The Patient has Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('results.html', type="csv", disease="pk",
@@ -439,9 +439,9 @@ def success():
                         acc = model.max()
 
                         if (prediction1[0] == 0):
-                            predictions = 'not diabetic' + f'   {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient does not have diabetes' + f'   {(round(acc, 3) * 100)}%'
                         else:
-                            predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient has diabetes' + f'   {(round(acc, 3) * 100)}%'
 
                         if (len(error) == 0):
                             return render_template('results.html', type="csv", disease="db",
@@ -463,9 +463,9 @@ def success():
                         acc = model.max()
 
                         if prediction1[0] == 0:
-                            predictions = 'not Heart Disease' + f'   {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient does not have Heart Disease' + f'   {(round(acc, 3) * 100)}%'
                         else:
-                            predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient has Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
                             return render_template('results.html', type="csv", disease="hd",
@@ -486,9 +486,9 @@ def success():
                         acc = model.max()
 
                         if prediction1[0] == 0:
-                            predictions = 'not Parkinsons' + f'      {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient does not have Parkinsons' + f'      {(round(acc, 3) * 100)}%'
                         else:
-                            predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
+                            predictions = 'The Patient has Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
                             return render_template('results.html', type="csv", disease="pk",
@@ -561,9 +561,9 @@ def parkinsons():
 def other_diseases():
     return render_template("other_diseases.html")
 
-@app.route('/Model')
+@app.route('/pneumonia')
 def pneumonia():
-    return render_template("Model.html")
+    return render_template("pneumonia.html")
 
 
 if __name__ == "__main__":
