@@ -1,4 +1,4 @@
-import tensorflow as tf
+# import tensorflow as tf
 
 classes = ['NORMAL', 'PNEUMONIA']
 IMAGE_SHAPE = (224, 224)
@@ -19,7 +19,7 @@ def load_and_prep_image(image):
     return image
 
 
-model = tf.keras.model.load_model("models/pnuemonia")
+# model = tf.keras.models.load_model("models/pnuemonia")
 
 
 def pred_model(imgpath):

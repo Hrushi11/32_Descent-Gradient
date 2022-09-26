@@ -5,7 +5,7 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
-import tensorflow as tf
+# import tensorflow as tf
 from pnuemonia import pred_model
 from flask import Flask, render_template, request
 
@@ -13,7 +13,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # loading the saved models
-model = tf.keras.model.load_model("models/pnuemonia")
+# model = tf.keras.model.load_model("models/pnuemonia")
 diabetes_model = pickle.load(open('models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('models/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('models/parkinsons_model.sav', 'rb'))
@@ -71,7 +71,7 @@ def db_form():
         data = list(map(float, data))
 
         # compare_data = compare_input(data, DB_Models)
-        if (len(data) == 8):
+        if len(data) == 8:
 
             # changing the input_data_diabetes to numpy array
             input_data_diabetes_as_numpy_array = np.asarray(data)
@@ -544,6 +544,22 @@ def success():
 @app.route('/')
 def home():
     return render_template("index.html")
+
+@app.route('/heart_disease')
+def heart_disease():
+    return render_template("heart_disease.html")
+
+@app.route('/diabetes')
+def diabetes():
+    return render_template("diabetes.html")
+
+@app.route('/parkinsons')
+def parkinsons():
+    return render_template("parkinsons.html")
+
+@app.route('/other_diseases')
+def other_diseases():
+    return render_template("other_diseases.html")
 
 
 if __name__ == "__main__":
