@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from pnuemonia import pred_model
+from brain_tumor import pred_model_bt
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -528,11 +529,45 @@ def success():
                     return render_template('results.html', type="csv", predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
                 else:
-                    return render_template('results.html', img=file_name, answer=answer, type="img", predictions=predictions)
+                    return render_template('results.html', img=file_name, answer=answer, type="img",model="pneumonia",
+                                           predictions=predictions)
             else:
                 return render_template('index.html', error=error)
     else:
         return render_template('index.html')
+
+
+# A common upload function for all pneumonia, HD, PK, DB and OD
+@app.route('/success_bt', methods=['GET', 'POST'])
+def success_bt():
+    global predictions, file_name, data, data_csv, answer
+    error = ''
+    target_img = os.path.join(os.getcwd(), 'static/images/')
+
+    if request.method == 'POST':
+
+        if request.files:
+            file = request.files['file']
+
+            if file and allowed_file(file.filename):
+
+                file.save(os.path.join(target_img, file.filename))
+                img_path = os.path.join(target_img, file.filename)
+                file_name = file.filename
+
+                class_result, prob_result = pred_model_bt(img_path)
+                predictions = (class_result, int(prob_result * 100))
+                answer = predictions[0]
+
+            else:
+                error = "Please upload images of jpg , jpeg and png extension only"
+
+        if len(error) == 0:
+            return render_template('results.html', img=file_name, answer=answer, type="img",
+                                   model="bt",
+                                   predictions=predictions)
+        else:
+            return render_template('index.html', error=error)
 
 
 @app.route('/')
@@ -574,6 +609,7 @@ def brain_tumor():
 @app.route('/cataract')
 def cataract():
     return render_template("cataract.html")
+
 
 # HI hrushikesh
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def load_and_prep(filepath):
+def load_and_prep_bt(filepath):
     img = tf.io.read_file(filepath)
     img = tf.io.decode_image(img)
     img = tf.image.resize(img, (224, 224))
@@ -12,9 +12,9 @@ def load_and_prep(filepath):
 class_names = ['glioma_tumor', 'meningioma_tumor', 'no_tumor', 'pituitary_tumor']
 
 
-def pred_model(filepath):
-    img = load_and_prep(filepath)
-    model = tf.keras.models.load_model(".\BrainTumorIdentificationModel")
+def pred_model_bt(filepath):
+    img = load_and_prep_bt(filepath)
+    model = tf.keras.models.load_model("Brain_tumor")
 
     with tf.device('/cpu:0'):
         pred_prob = model.predict(tf.expand_dims(img, axis=0))
@@ -22,29 +22,7 @@ def pred_model(filepath):
 
     return pred_class, pred_prob.max()
 
+# filepath = "testing_input/brain_tumor/no_tumor.jpg"
+# print(pred_model_bt(filepath))
 
 
-
-
-# @app.route('/brain-success')
-# def brainS():
-#     model = tf.keras.load_model('BrainTumorIdentificationModel')
-#
-#     target_img = os.path.join(os.getcwd(), 'static/images')
-#     if request.method == 'POST':
-#         if request.files:
-#             file = request.files['file']
-#             model_name = request.form.get('models')
-#             if file and allowed_file(file.filename):
-#                 file.save(os.path.join(target_img, file.filename))
-#                 img_path = os.path.join(target_img, file.filename)
-#                 img = file.filename
-#
-#                 class_result, prob_result = pred_model(img_path)
-#
-#                 # predictions = (class_result , int(prob_result*100))
-#                 predictions = (class_result, prob_result)
-#
-#             return render_template("success.html", img=img, predictions=predictions, name=model_name)
-#         else:
-#             return render_template("index.html")

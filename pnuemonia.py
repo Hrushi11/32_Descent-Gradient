@@ -27,8 +27,8 @@ def pred_model(imgpath):
 
     return pred_class, pred_prob.max()
 
-img_path = "testing_input/pneumonia_images/img3.jpeg"
-class_result, prob_result = pred_model(img_path)
-predictions = (class_result, int(prob_result * 100))
-
-print(predictions)
+# img_path = "testing_input/pneumonia_images/img3.jpeg"
+# class_result, prob_result = pred_model(img_path)
+# predictions = (class_result, int(prob_result * 100))
+#
+# print(predictions)
