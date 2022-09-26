@@ -1,7 +1,8 @@
-# import tensorflow as tf
+import tensorflow as tf
 
 classes = ['NORMAL', 'PNEUMONIA']
 IMAGE_SHAPE = (224, 224)
+model = tf.keras.models.load_model("Model")
 
 
 def load_and_prep_image(image):
@@ -17,9 +18,6 @@ def load_and_prep_image(image):
     if image.shape[2] == 1:
         image = tf.image.grayscale_to_rgb(image)
     return image
-
-
-# model = tf.keras.models.load_model("models/pnuemonia")
 
 
 def pred_model(imgpath):
