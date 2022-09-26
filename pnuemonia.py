@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-classes = ['NORMAL', 'PNEUMONIA']
+classes = ['Normal', 'Pneumonia']
 IMAGE_SHAPE = (224, 224)
 model = tf.keras.models.load_model("Pneumonia")
 
