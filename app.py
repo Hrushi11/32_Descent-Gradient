@@ -5,15 +5,15 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from pnuemonia import pred_model
 from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
 
-
-
 # loading the saved models
+model = tf.keras.model.load_model("models/pnuemonia")
 diabetes_model = pickle.load(open('models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('models/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('models/parkinsons_model.sav', 'rb'))
@@ -32,10 +32,8 @@ def open_csv(filepath, filename):
         return data
 
 
-
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ALLOWED_EXT = set(['jpg', 'jpeg', 'png', 'csv'])
+ALLOWED_EXT = {'jpg', 'jpeg', 'png', 'csv'}
 
 
 @app.route('/db_form', methods=['GET', 'POST'])
@@ -65,11 +63,12 @@ def db_form():
 
         data = [preg, glucose, bp, skin, insulin, bmi, dpf, age]
         data_conv = np.array([data])
-        data_csv = pd.DataFrame(data_conv, columns =['Pregnancies', 'Glucose', 'Blood Pressure', 'SkinThickness', 'Insulin', 'BMI', 'Diabetes Pedigree Function', 'Age'])
+        data_csv = pd.DataFrame(data_conv,
+                                columns=['Pregnancies', 'Glucose', 'Blood Pressure', 'SkinThickness', 'Insulin', 'BMI',
+                                         'Diabetes Pedigree Function', 'Age'])
 
         print(data_csv)
         data = list(map(float, data))
-
 
         # compare_data = compare_input(data, DB_Models)
         if (len(data) == 8):
@@ -87,21 +86,18 @@ def db_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not diabetic' + f'   {(round(acc, 3)*100)}%'
+                predictions = 'not diabetic' + f'   {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'diabetic' + f'   {(round(acc, 3)*100)}%'
+                predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-                return render_template('dep.html', type="csv", disease="db",
-                                       predictions=predictions,
-                                       data=data_csv.to_html(classes='mystyle', index=False))
+            return render_template('dep.html', type="csv", disease="db",
+                                   predictions=predictions,
+                                   data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
 
-
     return render_template("diabetes_form.html")
-
-
 
 
 @app.route('/hd_form', methods=['GET', 'POST'])
@@ -139,9 +135,11 @@ def hd_form():
 
         thal = request.form.get("thal")
 
-        data = [age, sex, cp, trestbps, chol, fbs, restecg, thalach,exang,oldpeak,slope,ca,thal]
+        data = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
         data_conv = np.array([data])
-        data_csv = pd.DataFrame(data_conv, columns =["age"," sex"," cp"," trestbps"," chol"," fbs"," restecg"," thalach","exang","oldpeak","slope","ca","thal"])
+        data_csv = pd.DataFrame(data_conv,
+                                columns=["age", " sex", " cp", " trestbps", " chol", " fbs", " restecg", " thalach",
+                                         "exang", "oldpeak", "slope", "ca", "thal"])
 
         print(data_csv)
         data = list(map(float, data))
@@ -152,7 +150,6 @@ def hd_form():
             # reshape the numpy array as we are predicting for only on instance
             input_data_heartd_reshaped = input_data_heartd_as_numpy_array.reshape(1, -1)
 
-
             prediction1 = heart_disease_model.predict(input_data_heartd_reshaped)
 
             # Accuracies
@@ -160,9 +157,9 @@ def hd_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not Heart Disease' + f'   {(round(acc, 3)*100)}%'
+                predictions = 'not Heart Disease' + f'   {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'Heart Disease' + f'   {(round(acc, 3)*100)}%'
+                predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('dep.html', type="csv", disease="hd",
@@ -170,7 +167,6 @@ def hd_form():
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
-
 
     return render_template("heart_disease_form.html")
 
@@ -228,17 +224,19 @@ def pk_form():
 
         v = request.form.get("22")
 
-
-
-        data = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v]
+        data = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v]
         data_conv = np.array([data])
-        data_csv = pd.DataFrame(data_conv, columns =["MDVP:Fo(Hz)","MDVP:Fhi(Hz)","MDVP:Flo(Hz)","MDVP:Jitter(%)","MDVP:Jitter(Abs)","MDVP:RAP","MDVP:PPQ","Jitter:DDP","MDVP:Shimmer","MDVP:Shimmer(dB)","Shimmer:APQ3","Shimmer:APQ5","MDVP:APQ","Shimmer:DDA","NHR","HNR","RPDE","DFA","spread1","spread2","D2","PPE"])
+        data_csv = pd.DataFrame(data_conv, columns=["MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)",
+                                                    "MDVP:Jitter(Abs)", "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP",
+                                                    "MDVP:Shimmer", "MDVP:Shimmer(dB)", "Shimmer:APQ3", "Shimmer:APQ5",
+                                                    "MDVP:APQ", "Shimmer:DDA", "NHR", "HNR", "RPDE", "DFA", "spread1",
+                                                    "spread2", "D2", "PPE"])
 
         print(data)
         data = list(map(float, data))
 
         if (len(data) == 22):
-            input_data_parkinsons_as_numpy_array = np.round_(data, decimals = 4)
+            input_data_parkinsons_as_numpy_array = np.round_(data, decimals=4)
 
             input_data_parkinsons_reshaped = input_data_parkinsons_as_numpy_array.reshape(1, -1)
 
@@ -250,9 +248,9 @@ def pk_form():
             acc = model.max()
 
             if (prediction1[0] == 0):
-                predictions = 'not Parkinsons' + f'      {(round(acc, 3)*100)}%'
+                predictions = 'not Parkinsons' + f'      {(round(acc, 3) * 100)}%'
             else:
-                predictions = 'Parkinsons' + f'      {(round(acc, 3)*100)}%'
+                predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('dep.html', type="csv", disease="pk",
@@ -261,10 +259,7 @@ def pk_form():
         else:
             return render_template('index.html', error=error)
 
-
     return render_template("parkinsons_form.html")
-
-
 
 
 @app.route('/od_form', methods=['GET', 'POST'])
@@ -342,11 +337,18 @@ def od_form():
 
         ag = request.form.get("33")
 
-
-
-        data = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag]
+        data = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, aa, ab, ac, ad, ae, af,
+                ag]
         data_conv = np.array([data])
-        data_csv = pd.DataFrame(data_conv, columns =["itching","skin_rash","shivering","chills","vomiting","fatigue","high_fever","headache","yellowish_skin","nausea","loss_of_appetite","pain_behind_the_eyes","abdominial_pain","diarrhoea","mild_fever","yellowing_of_eyes","malaise","runny_nose","chest_pain","pain_in_anal_region","neck_pain","dizziness","swollen_extremeties","slurred_speech","loss_of_balance","bladder_discomfort","irritability","increased_appetite","stomach_bleeding","painful_walking","small_dents_in_nails","blister","prognosis"])
+        data_csv = pd.DataFrame(data_conv,
+                                columns=["itching", "skin_rash", "shivering", "chills", "vomiting", "fatigue",
+                                         "high_fever", "headache", "yellowish_skin", "nausea", "loss_of_appetite",
+                                         "pain_behind_the_eyes", "abdominial_pain", "diarrhoea", "mild_fever",
+                                         "yellowing_of_eyes", "malaise", "runny_nose", "chest_pain",
+                                         "pain_in_anal_region", "neck_pain", "dizziness", "swollen_extremeties",
+                                         "slurred_speech", "loss_of_balance", "bladder_discomfort", "irritability",
+                                         "increased_appetite", "stomach_bleeding", "painful_walking",
+                                         "small_dents_in_nails", "blister", "prognosis"])
 
         print(data_csv)
         data = list(map(float, data))
@@ -360,15 +362,12 @@ def od_form():
 
             data = new_data2
 
-
-
-
             # Accuracies
             knn = otherdiseases_model.predict_proba(new_data2)
             acc = knn.max()
 
             pred1 = otherdiseases_model.predict(new_data2)
-            predictions = f"{pred1[0]}" + f'{(round(acc,  3)*100)}%'
+            predictions = f"{pred1[0]}" + f'{(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
             return render_template('dep.html', type="csv", disease="od",
@@ -376,7 +375,6 @@ def od_form():
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
-
 
     return render_template("other_diseases_form.html")
 
@@ -394,12 +392,12 @@ def open_csv_2(filepath, filename):
 
 def allowed_file(filename):
     return '.' in filename and \
-               filename.rsplit('.', 1)[1] in ALLOWED_EXT
+           filename.rsplit('.', 1)[1] in ALLOWED_EXT
 
 
 @app.route('/success', methods=['GET', 'POST'])
 def success():
-    global predictions, file_name, data
+    global predictions, file_name, data, data_csv
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
 
@@ -436,7 +434,6 @@ def success():
                         print(input_data_diabetes_reshaped)
                         prediction1 = diabetes_model.predict(input_data_diabetes_reshaped)
 
-
                         # Accuracies
                         model = diabetes_model.predict_proba(input_data_diabetes_reshaped)
                         acc = model.max()
@@ -446,7 +443,6 @@ def success():
                         else:
                             predictions = 'diabetic' + f'   {(round(acc, 3) * 100)}%'
 
-
                         if (len(error) == 0):
                             return render_template('dep.html', type="csv", disease="db",
                                                    predictions=predictions,
@@ -454,60 +450,54 @@ def success():
                         else:
                             return render_template('index.html', error=error)
 
-
-
-                    elif(len(data) == 13):
+                    elif (len(data) == 13):
 
                         input_data_heartd_as_numpy_array = np.asarray(data)
                         # reshape the numpy array as we are predicting for only on instance
                         input_data_heartd_reshaped = input_data_heartd_as_numpy_array.reshape(1, -1)
 
-
                         prediction1 = heart_disease_model.predict(input_data_heartd_reshaped)
 
                         # Accuracies
-                        knn = heart_disease_model.predict_proba(input_data_heartd_reshaped)
-                        acc_knn = knn.max()
+                        model = heart_disease_model.predict_proba(input_data_heartd_reshaped)
+                        acc = model.max()
 
-                        if (prediction1[0] == 0):
-                            predictionsknn = 'not Heart Disease' + f'   {(round(acc_knn, 3)*100)}%'
+                        if prediction1[0] == 0:
+                            predictions = 'not Heart Disease' + f'   {(round(acc, 3) * 100)}%'
                         else:
-                            predictionsknn = 'Heart Disease' + f'   {(round(acc_knn, 3)*100)}%'
+                            predictions = 'Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
-                        if (len(error) == 0):
+                        if len(error) == 0:
                             return render_template('dep.html', type="csv", disease="hd",
-                                                   predictionsknn=predictionsknn,
+                                                   predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
                             return render_template('index.html', error=error)
 
-                    elif (len(data) == 22):
+                    elif len(data) == 22:
                         input_data_parkinsons_as_numpy_array = np.round_(data, decimals=4)
                         # reshape the numpy array
                         input_data_parkinsons_reshaped = input_data_parkinsons_as_numpy_array.reshape(1, -1)
 
-                        # prediction1 = PK_classifier_KNN_model.predict(input_data_parkinsons_reshaped)
-                        # prediction1 = [0]
                         prediction1 = parkinsons_model.predict(input_data_parkinsons_reshaped)
 
                         # Accuracies
+                        model = parkinsons_model.predict_proba(input_data_parkinsons_reshaped)
+                        acc = model.max()
 
-                        knn = parkinsons_model.predict_proba(input_data_parkinsons_reshaped)
-                        acc_knn = knn.max()
-
-                        if (prediction1[0] == 0):
-                            predictionsknn = 'not Parkinsons' + f'      {(round(acc_knn, 3) * 100)}%'
+                        if prediction1[0] == 0:
+                            predictions = 'not Parkinsons' + f'      {(round(acc, 3) * 100)}%'
                         else:
-                            predictionsknn = 'Parkinsons' + f'      {(round(acc_knn, 3) * 100)}%'
+                            predictions = 'Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
-                        if (len(error) == 0):
+                        if len(error) == 0:
                             return render_template('dep.html', type="csv", disease="pk",
-                                                   predictionsknn=predictionsknn,
+                                                   predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
                             return render_template('index.html', error=error)
 
-                    elif (len(data) == 33):
+                    elif len(data) == 33:
                         new_data = np.asarray(data)
                         new_data2 = new_data.reshape(1, -1)
                         probaDT = otherdiseases_model.predict_proba(new_data2)
@@ -516,19 +506,16 @@ def success():
 
                         # Accuracies
 
-                        knn = otherdiseases_model.predict_proba(new_data2)
-                        acc_knn = knn.max()
-
-
+                        model = otherdiseases_model.predict_proba(new_data2)
+                        acc = model.max()
 
                         pred1 = otherdiseases_model.predict(new_data2)
-                        predictionsknn = f"{pred1[0]}" + f'{(round(acc_knn, 3) * 100)}%'
+                        predictions = f"{pred1[0]}" + f'{(round(acc, 3) * 100)}%'
 
-
-                        if (len(error) == 0):
+                        if len(error) == 0:
 
                             return render_template('dep.html', type="csv", disease="od",
-                                                   predictionsknn=predictionsknn,
+                                                   predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
 
                         else:
@@ -542,7 +529,7 @@ def success():
             else:
                 error = "Please upload images of jpg , jpeg and png extension only"
 
-            if (len(error) == 0):
+            if len(error) == 0:
                 if ".csv" in file_name:
                     return render_template('dep.html', type="csv", predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
@@ -553,9 +540,11 @@ def success():
     else:
         return render_template('index.html')
 
+
 @app.route('/')
 def home():
     return render_template("index.html")
+
 
 if __name__ == "__main__":
     webbrowser.open_new('http://127.0.0.1:2000/')

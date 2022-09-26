@@ -3,6 +3,7 @@ import tensorflow as tf
 classes = ['NORMAL', 'PNEUMONIA']
 IMAGE_SHAPE = (224, 224)
 
+
 def load_and_prep_image(image):
     """
     Reads an image from filename, turns it into a tensor and reshapes it to (img_shape, img_shape,, color_channels)
@@ -17,7 +18,9 @@ def load_and_prep_image(image):
         image = tf.image.grayscale_to_rgb(image)
     return image
 
-model = tf.keras.model.load_model("Model")
+
+model = tf.keras.model.load_model("models/pnuemonia")
+
 
 def pred_model(imgpath):
     img_2 = load_and_prep_image(imgpath)
