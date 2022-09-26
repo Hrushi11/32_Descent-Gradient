@@ -125,14 +125,17 @@ height: 300%;">
             <div class="row justify-content-center text-center">
                 <div class="col-xl-12">
                     <div class="depertment_content">
-                                <h2>Prediction: {{predictions[0].split("_")[0]}}</h2>
-                                <h2>Accuracy: {{predictions[1]}}%</h2>
+                        {% if answer == 'Pneumonia'%}
+                                <h2>X-ray shows that patient has {{predictions[0].split("_")[0]}}</h2>
+                        {% elif answer == 'Normal' %}
+                                <h2>X-ray shows that patient is {{predictions[0].split("_")[0]}}</h2>
                                 <div class="row">
+                        {% endif %}
 
                             <section class="body">
                                   <div class="header">
                                     <row style="width: 48%; height:60%; display: flex;justify-content: center display: block; margin-left: auto;margin-right: auto;" >
-                                      <img class = "result-img" src={{url_for('static', filename ='images/'+ img)}}>
+                                      <img class = "result-img" src={{url_for('static', filename ='images/'+ img)}} width="100%">
                                     </row>
                                   </div>
 

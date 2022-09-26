@@ -5,7 +5,7 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
-# import tensorflow as tf
+import tensorflow as tf
 from pnuemonia import pred_model
 from flask import Flask, render_template, request
 
@@ -390,7 +390,7 @@ def allowed_file(filename):
 # A common upload function for all pneumonia, HD, PK, DB and OD
 @app.route('/success', methods=['GET', 'POST'])
 def success():
-    global predictions, file_name, data, data_csv
+    global predictions, file_name, data, data_csv, answer
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
 
@@ -518,6 +518,7 @@ def success():
                 else:
                     class_result, prob_result = pred_model(img_path)
                     predictions = (class_result, int(prob_result * 100))
+                    answer = predictions[0]
 
             else:
                 error = "Please upload images of jpg , jpeg and png extension only"
@@ -527,7 +528,7 @@ def success():
                     return render_template('results.html', type="csv", predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
                 else:
-                    return render_template('results.html', img=file_name, type="img", predictions=predictions)
+                    return render_template('results.html', img=file_name, answer=answer, type="img", predictions=predictions)
             else:
                 return render_template('index.html', error=error)
     else:
@@ -574,7 +575,7 @@ def brain_tumor():
 def cataract():
     return render_template("cataract.html")
 
-
+# HI hrushikesh
 if __name__ == "__main__":
     webbrowser.open_new('http://127.0.0.1:2000/')
     app.run(debug=True, port=2000)

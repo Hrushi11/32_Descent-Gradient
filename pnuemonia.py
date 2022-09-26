@@ -1,9 +1,8 @@
-# import tensorflow as tf
+import tensorflow as tf
 
 classes = ['NORMAL', 'PNEUMONIA']
 IMAGE_SHAPE = (224, 224)
-# model = tf.keras.models.load_model("Model")
-
+model = tf.keras.models.load_model("Pneumonia")
 
 def load_and_prep_image(image):
     """
@@ -19,7 +18,6 @@ def load_and_prep_image(image):
         image = tf.image.grayscale_to_rgb(image)
     return image
 
-
 def pred_model(imgpath):
     img_2 = load_and_prep_image(imgpath)
 
@@ -29,6 +27,8 @@ def pred_model(imgpath):
 
     return pred_class, pred_prob.max()
 
-# img_path = "testing_input/pneumonia_images/img1.jpeg"
-# class_result, prob_result = pred_model(img_path)
-# predictions = (class_result, int(prob_result * 100))
+img_path = "testing_input/pneumonia_images/img3.jpeg"
+class_result, prob_result = pred_model(img_path)
+predictions = (class_result, int(prob_result * 100))
+
+print(predictions)
