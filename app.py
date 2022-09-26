@@ -9,7 +9,6 @@ import pandas as pd
 from pnuemonia import pred_model
 from flask import Flask, render_template, request
 
-
 app = Flask(__name__)
 
 # loading the saved models
@@ -545,25 +544,40 @@ def success():
 def home():
     return render_template("index.html")
 
+
 @app.route('/heart_disease')
 def heart_disease():
     return render_template("heart_disease.html")
+
 
 @app.route('/diabetes')
 def diabetes():
     return render_template("diabetes.html")
 
+
 @app.route('/parkinsons')
 def parkinsons():
     return render_template("parkinsons.html")
+
 
 @app.route('/other_diseases')
 def other_diseases():
     return render_template("other_diseases.html")
 
+
 @app.route('/pneumonia')
 def pneumonia():
     return render_template("pneumonia.html")
+
+
+@app.route('/brain_tumor')
+def brain_tumor():
+    return render_template("brain_tumor.html")
+
+
+@app.route('/cataract')
+def cataract():
+    return render_template("cataract.html")
 
 
 if __name__ == "__main__":
