@@ -35,6 +35,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ALLOWED_EXT = {'jpg', 'jpeg', 'png', 'csv'}
 
 
+# Input from form and conversion of data into dataframe for training
 @app.route('/db_form', methods=['GET', 'POST'])
 def db_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
@@ -99,6 +100,7 @@ def db_form():
     return render_template("diabetes_form.html")
 
 
+# Input from form and conversion of data into dataframe for training
 @app.route('/hd_form', methods=['GET', 'POST'])
 def hd_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
@@ -170,6 +172,7 @@ def hd_form():
     return render_template("heart_disease_form.html")
 
 
+# Input from form and conversion of data into dataframe for training
 @app.route('/pk_form', methods=['GET', 'POST'])
 def pk_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
@@ -261,6 +264,7 @@ def pk_form():
     return render_template("parkinsons_form.html")
 
 
+# Input from form and convertion of data into dataframe for training
 @app.route('/od_form', methods=['GET', 'POST'])
 def od_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
@@ -378,22 +382,12 @@ def od_form():
     return render_template("other_diseases_form.html")
 
 
-def open_csv_2(filepath, filename):
-    with open(filepath + filename, mode='r') as file:
-        csvFile = csv.reader(file)
-
-        for lines in csvFile:
-            arr = lines
-
-        data = list(arr)
-        return data
-
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXT
 
 
+# A common upload function for all pneumonia, HD, PK, DB and OD
 @app.route('/success', methods=['GET', 'POST'])
 def success():
     global predictions, file_name, data, data_csv
@@ -545,6 +539,7 @@ def home():
     return render_template("index.html")
 
 
+# Pages to Upload/Enter the data
 @app.route('/heart_disease')
 def heart_disease():
     return render_template("heart_disease.html")
