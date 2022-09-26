@@ -1,8 +1,8 @@
-import tensorflow as tf
+# import tensorflow as tf
 
 classes = ['NORMAL', 'PNEUMONIA']
 IMAGE_SHAPE = (224, 224)
-model = tf.keras.models.load_model("Model")
+# model = tf.keras.models.load_model("Model")
 
 
 def load_and_prep_image(image):

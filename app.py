@@ -5,7 +5,7 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
-import tensorflow as tf
+# import tensorflow as tf
 from pnuemonia import pred_model
 from flask import Flask, render_template, request
 
@@ -13,7 +13,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # loading the saved models
-model = tf.keras.models.load_model("Model")
+# model = tf.keras.models.load_model("Model")
 diabetes_model = pickle.load(open('models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('models/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('models/parkinsons_model.sav', 'rb'))
