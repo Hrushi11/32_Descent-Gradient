@@ -135,6 +135,13 @@ height: 300%;">
                         {% elif model == 'bt' %}
                                 <h2>MRI shows that patient has {{predictions[0].split("_")[0]}}</h2>
                                     <div class="row">
+                        {% elif model == 'ct' %}
+                                {% if answer == 'Cataract'%}
+                                    <h2>The patient has {{predictions[0].split("_")[0]}}</h2>
+                                {% elif answer == 'Normal' %}
+                                    <h2>The patient is {{predictions[0].split("_")[0]}}</h2>
+                                    <div class="row">
+                                {% endif %}
                         {% endif %}
 
                             <section class="body">

@@ -5,8 +5,8 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 from pnuemonia import pred_model
+from cataract import pred_model_ct
 from brain_tumor import pred_model_bt
 from flask import Flask, render_template, request
 
@@ -529,7 +529,7 @@ def success():
                     return render_template('results.html', type="csv", predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
                 else:
-                    return render_template('results.html', img=file_name, answer=answer, type="img",model="pneumonia",
+                    return render_template('results.html', img=file_name, answer=answer, type="img", model="pneumonia",
                                            predictions=predictions)
             else:
                 return render_template('index.html', error=error)
@@ -537,7 +537,7 @@ def success():
         return render_template('index.html')
 
 
-# A common upload function for all pneumonia, HD, PK, DB and OD
+# upload function for brain_tumor
 @app.route('/success_bt', methods=['GET', 'POST'])
 def success_bt():
     global predictions, file_name, data, data_csv, answer
@@ -565,6 +565,39 @@ def success_bt():
         if len(error) == 0:
             return render_template('results.html', img=file_name, answer=answer, type="img",
                                    model="bt",
+                                   predictions=predictions)
+        else:
+            return render_template('index.html', error=error)
+
+
+# upload function for brain_tumor
+@app.route('/success_ct', methods=['GET', 'POST'])
+def success_ct():
+    global predictions, file_name, data, data_csv, answer
+    error = ''
+    target_img = os.path.join(os.getcwd(), 'static/images/')
+
+    if request.method == 'POST':
+
+        if request.files:
+            file = request.files['file']
+
+            if file and allowed_file(file.filename):
+
+                file.save(os.path.join(target_img, file.filename))
+                img_path = os.path.join(target_img, file.filename)
+                file_name = file.filename
+
+                class_result, prob_result = pred_model_ct(img_path)
+                predictions = (class_result, int(prob_result * 100))
+                answer = predictions[0]
+
+            else:
+                error = "Please upload images of jpg , jpeg and png extension only"
+
+        if len(error) == 0:
+            return render_template('results.html', img=file_name, answer=answer, type="img",
+                                   model="ct",
                                    predictions=predictions)
         else:
             return render_template('index.html', error=error)
