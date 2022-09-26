@@ -1,4 +1,4 @@
-# 32_Descent-Gradient
+# Descent Gradient
 
 **Domain Name:** HealthCare
 
