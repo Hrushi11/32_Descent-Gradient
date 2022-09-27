@@ -5,6 +5,7 @@ This is our Submission for the VIIT Hackathon, DevCup 2022.
 
 - **Domain-Name:** Healthcare
 - **Live Link:** [Multi Disease Prediction](https://multidiseaseprediction.azurewebsites.net/)
+- **Video Link:** [Video Link](https://www.youtube.com/watch?v=LUtEgdnLSls&t=255s)
 - **Problem Statement:** Multi-Disease Prediction
 
 ## Introduction
