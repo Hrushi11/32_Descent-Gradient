@@ -55,7 +55,7 @@ Download all the dependencies provided on requirements.txt
 pip install -r .\requirements.txt
 ```
 
-Activated the virtual environment
+Activate the virtual environment
 ```sh
 .\pp\Scripts\activate
 ```
