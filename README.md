@@ -7,15 +7,15 @@ This is our Submission for the VIIT Hackathon, DevCup 2022.
 - **Live Link:** [Multi Disease Prediction](https://multidiseaseprediction.azurewebsites.net/)
 - **Problem Statement:** Multi-Disease Prediction
 
-## Website
-
-![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
-
 ## Introduction
 
 One stop solution for most of your medical needs. The features included in the system are Early detection, Awareness, Easy to use, Accurate Predictions, Recommendations, Doctors, Hospitals, Medicals, Access to care, Statistics, Transportation and Multi disease predition.
 
 The services which we offer provides a whopping prediction on 50+ diseases.
+
+## Website
+
+![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
 
 ## Tech
 
