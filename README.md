@@ -10,7 +10,6 @@ This is our Submission for the VIIT Hackathon, DevCup 2022.
 ## Website
 
 ![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
-![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/feat.jpg?raw=true)
 
 ## Tech
 
