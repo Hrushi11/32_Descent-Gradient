@@ -7,6 +7,10 @@ This is our Submission for the VIIT Hackathon, DevCup 2022.
 - **Live Link:** [Multi Disease Prediction](https://multidiseaseprediction.azurewebsites.net/)
 - **Problem Statement:** Multi-Disease Prediction
 
+## Website
+
+![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
+![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/feat.jpg?raw=true)
 
 ## Tech
 
@@ -18,11 +22,6 @@ The website uses a number of open source projects to work properly:
 - [Matplotlib] - A low level graph plotting library in python that serves as a visualization utility.
 - [Numpy] - Used for working with arrays
 - [Pandas] - Used for data analysis and associated manipulation of tabular data in Dataframes
-
-# Website
-
-![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
-![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/feat.jpg?raw=true)
 
 # Code
 
