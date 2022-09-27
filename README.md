@@ -1,7 +1,7 @@
 # 32 Descent Gradient
 ## _VIIT Hackathon DevCup 2022_
 
-This is our Submission for the VIIT Hackathon. DevCup 2022.
+This is our Submission for the VIIT Hackathon, DevCup 2022.
 
 - **Domain-Name:** Healthcare
 - **Problem Statement:** Multi-Disease Prediction
@@ -68,7 +68,7 @@ Run app.py after completing all the steps.
 </a>
 
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+[//]: # (These are the reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    
 [Tensorflow]: <https://www.tensorflow.org/>
