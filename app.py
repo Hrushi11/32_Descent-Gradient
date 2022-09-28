@@ -48,7 +48,7 @@ ALLOWED_EXT = {'jpg', 'jpeg', 'png', 'csv'}
 def db_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
     error = ''
-
+    latitude, longitude = current_location()
     if request.method == "POST":
 
         fullname = request.form.get("fullname")
@@ -113,7 +113,7 @@ def db_form():
 def hd_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
     error = ''
-
+    latitude, longitude = current_location()
     if request.method == "POST":
 
         fullname = request.form.get("fullname")
@@ -185,7 +185,7 @@ def hd_form():
 def pk_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
     error = ''
-
+    latitude, longitude = current_location()
     if request.method == "POST":
 
         fullname = request.form.get("fullname")
@@ -277,7 +277,7 @@ def pk_form():
 def od_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
     error = ''
-
+    latitude, longitude = current_location()
     if request.method == "POST":
 
         fullname = request.form.get("fullname")
@@ -395,7 +395,7 @@ def od_form():
 def insurance_form():
     global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
     error = ''
-
+    latitude, longitude = current_location()
     if request.method == "POST":
 
         fullname = request.form.get("fullname")
@@ -598,7 +598,7 @@ def success_bt():
     global predictions, file_name, data, data_csv, answer
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
-
+    latitude, longitude = current_location()
     if request.method == 'POST':
 
         if request.files:
@@ -632,7 +632,7 @@ def success_ct():
     global predictions, file_name, data, data_csv, answer
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
-
+    latitude, longitude = current_location()
     if request.method == 'POST':
 
         if request.files:
@@ -666,7 +666,7 @@ def success_tb():
     global predictions, file_name, data, data_csv, answer
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
-
+    latitude, longitude = current_location()
     if request.method == 'POST':
 
         if request.files:
@@ -750,11 +750,13 @@ def brain_tumor():
 
 @app.route('/cataract')
 def cataract():
+    latitude, longitude = current_location()
     return render_template("cataract.html")
 
 
 @app.route('/tuberculosis')
 def tuberculosis():
+    latitude, longitude = current_location()
     return render_template("tuberculosis.html")
 
 
