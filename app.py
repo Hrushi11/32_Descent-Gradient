@@ -9,6 +9,7 @@ from pnuemonia import pred_model
 from maps import current_location
 from cataract import pred_model_ct
 from brain_tumor import pred_model_bt
+from insurance import insurance_predict
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -387,6 +388,48 @@ def od_form():
     return render_template("other_diseases_form.html")
 
 
+# Input form for insurance
+@app.route('/insurance_form', methods=['GET', 'POST'])
+def insurance_form():
+    global predictions, file_name, predictions1, predictions2, predictions3, predictions4, predictions5, data
+    error = ''
+
+    if request.method == "POST":
+
+        fullname = request.form.get("fullname")
+
+        region = request.form.get("region")
+
+        smoker = request.form.get("smoker")
+
+        children = request.form.get("children")
+
+        sex = request.form.get("sex")
+
+        bmi = request.form.get("bmi")
+
+        age = request.form.get("age")
+
+        data = [age, sex, bmi, children, smoker, region]
+        data_conv = np.array([data])
+        data_csv = pd.DataFrame(data_conv,
+                                columns=['age', 'sex', 'bmi', 'children', 'smoker', 'region'])
+
+        print(data_csv)
+        data = list(map(float, data))
+
+        predictions = insurance_predict(data)
+
+        if len(error) == 0:
+            return render_template('insurance_results.html', type="csv",
+                                   predictions=predictions,
+                                   data=data_csv.to_html(classes='mystyle', index=False))
+        else:
+            return render_template('index.html', error=error)
+
+    return render_template("insurance_form.html")
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXT
@@ -617,6 +660,8 @@ def success_ct():
 
 @app.route('/')
 def home():
+    global latitude, longitude
+    latitude, longitude = current_location()
     return render_template("index.html")
 
 
