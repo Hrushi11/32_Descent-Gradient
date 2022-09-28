@@ -1486,7 +1486,7 @@ section {
 .contact .php-email-form .error-message {
   display: none;
   color: #fff;
-  background: #ed3c0d;
+  background: #1ACC8D;
   text-align: left;
   padding: 15px;
   font-weight: 600;
@@ -1916,7 +1916,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .mystyle thead tr {
-  background-color: #009879;
+    text-align: center;
+  background-color: #1A1D94;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
@@ -1925,6 +1926,7 @@ body::-webkit-scrollbar-thumb {
 .mystyle tr:first-child td,
 
 tr td:first-child {
+text-align: center;
     font-weight: bold;
 }
 
@@ -1935,6 +1937,7 @@ tr td:first-child {
 }
 
 .mystyle tbody tr {
+text-align: center;
   border-bottom: 1px solid #dddddd;
   background-color: #ffffff;
 }
@@ -1944,10 +1947,12 @@ tr td:first-child {
 <!--}-->
 
 .mystyle tbody tr:last-of-type {
+text-align: center;
   border-bottom: 2px solid #009879;
 }
 
 .mystyle tbody tr.active-row {
+text-align: center;
   font-weight: bold;
   color: #009879;
 }
@@ -1993,4 +1998,23 @@ tr td:first-child {
 
 .clients .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--color-primary);
+}
+
+
+
+/*--------------------------------------------------------------
+# Insurance
+--------------------------------------------------------------*/
+
+#insurance .btn-get-started {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #fff;
+  background: #1acc8d;
 }

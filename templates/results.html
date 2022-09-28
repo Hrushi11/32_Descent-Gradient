@@ -77,9 +77,15 @@
       </div>
     </section><!-- End Breadcrumbs Section -->
 
-    <section class="inner-page">
+      <section id="results" class="contact">
       <div class="container">
 
+        <div class="section-title" data-aos="fade-up">
+          <h2>Results</h2>
+          <p>Prediction of Model</p>
+        </div>
+          </div>
+    </section><!-- End insurance Section -->
     <!-- breadcrumb start-->
 {% if type == 'csv'%}
     <!-- our depertment part start-->
@@ -125,9 +131,16 @@ height: 300%;">
                     <div class="depertment_content">
                         {% if model == 'pneumonia'%}
                             {% if answer == 'Pneumonia'%}
-                                    <h2>X-ray shows that patient has {{predictions[0].split("_")[0]}}</h2>
+                                    <h2>Chest X-ray shows that patient has {{predictions[0].split("_")[0]}}</h2>
                             {% elif answer == 'Normal' %}
-                                    <h2>X-ray shows that patient is {{predictions[0].split("_")[0]}}</h2>
+                                    <h2>Chest X-ray shows that patient is {{predictions[0].split("_")[0]}}</h2>
+                                    <div class="row">
+                            {% endif %}
+                        {% elif model == 'tb'%}
+                            {% if answer == 'Tuberculosis'%}
+                                    <h2>Chest X-ray shows that patient has {{predictions[0].split("_")[0]}}</h2>
+                            {% elif answer == 'Normal' %}
+                                    <h2>Chest X-ray shows that patient is {{predictions[0].split("_")[0]}}</h2>
                                     <div class="row">
                             {% endif %}
                         {% elif model == 'bt' %}
@@ -157,6 +170,7 @@ height: 300%;">
                 </div>
             </div>
         </div>
+    </section>
     </section>
 
 
@@ -324,50 +338,85 @@ function createMarkers(places) {
           <h2>F.A.Q</h2>
           <p>Frequently Asked Questions</p>
         </div>
+        {% if model == 'pneumonia'%}
 
+
+        {% elif model == 'tb'%}
+
+
+        {% elif model == 'db'%}
+
+
+        {% elif model == 'hd'%}
+
+
+        {% elif model == 'pk'%}
+
+
+        {% elif model == 'od'%}
+
+
+
+        {% elif model == 'bt' %}
+
+
+        {% elif model == 'ct' %}
+
+
+        {% endif %}
         <div class="faq-list">
           <ul>
             <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">
+                Non consectetur a erat nam at lectus urna duis?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                  Feugiat pretium nibh ipsum consequat. Tempu
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">
+                Feugiat scelerisque varius morbi enim nunc?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  Dolor sit amet consectetur adipiscing
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">
+                Dolor sit amet consectetur adipiscing elit?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                    tum eu facilisis sed odio morbi quis
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">
+                Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                  an. Sit amet nisl suscipit ad
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">
+                Tortor vitae purus faucibus ornare. Varius vel pharetra v
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                  Laoreet sit amet cursus sit amet dictum sit amet justo.
                 </p>
               </div>
             </li>
@@ -377,6 +426,50 @@ function createMarkers(places) {
 
       </div>
     </section><!-- End F.A.Q Section -->
+
+         <!-- ======= Contact Section ======= -->
+    <section id="insurance" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Claim Medical Insurance</h2>
+          <p>Calculate your Insurance</p>
+        </div>
+
+        <!-- ======= Insurance Section ======= -->
+    <section id="details" class="details">
+      <div class="container">
+
+        <div class="row content">
+          <div class="col-md-4" data-aos="fade-right">
+            <img src="static/assets/img/insurance.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-8 pt-4" data-aos="fade-up">
+            <h3>Calculate your medical Insurance and claim from our partnered companies.</h3>
+            <p class="fst-italic">
+              We have partnered up with some legitimate medical insurance companies which would give you health insurance at right amount.
+                Calculate the Insurance amount for your medical Insurance
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i> Calculates accurate insurance amount.</li>
+              <li><i class="bi bi-check"></i> Legitimate Insurance providing companies.</li>
+              <li><i class="bi bi-check"></i> Easy to claim insurance process.</li>
+              <li><i class="bi bi-check"></i> Guaranteed authenticity.</li>
+            </ul>
+            <p>
+              Click the link below to calculate your health insurance
+            </p>
+
+              <a href="/insurance_form" class="btn-get-started scrollto">Calculate Insurance</a>
+
+          </div>
+        </div>
+      </div>
+    </section><!-- End insurance Section -->
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -392,7 +485,7 @@ function createMarkers(places) {
 
           <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="/send-data" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -410,11 +503,11 @@ function createMarkers(places) {
               </div>
 
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
+                <div class="error-message d-block">Status:</div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
@@ -426,6 +519,7 @@ function createMarkers(places) {
 
       </div>
     </section><!-- End Contact Section -->
+
 
   </main><!-- End #main -->
 

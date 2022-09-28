@@ -51,6 +51,17 @@ def insurance_predict(input_data):
 
     return currencyInIndiaFormat(round(prediction[0], 2))
 
+
+
+
+
+
+
+
+
+
+
+
 #
 # print(insurance_predict(input_data))
 

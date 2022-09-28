@@ -5,10 +5,12 @@ import sklearn
 import webbrowser
 import numpy as np
 import pandas as pd
+from fire import Uploader
 from pnuemonia import pred_model
 from maps import current_location
 from cataract import pred_model_ct
 from brain_tumor import pred_model_bt
+from tuberculosis import pred_model_tb
 from insurance import insurance_predict
 from flask import Flask, render_template, request
 
@@ -98,7 +100,7 @@ def db_form():
 
         if (len(error) == 0):
             return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="db",
-                                   predictions=predictions,
+                                   predictions=predictions, model="db",
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
@@ -170,7 +172,7 @@ def hd_form():
 
         if (len(error) == 0):
             return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="hd",
-                                   predictions=predictions,
+                                   predictions=predictions, model="hd",
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
@@ -262,7 +264,7 @@ def pk_form():
 
         if (len(error) == 0):
             return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="pk",
-                                   predictions=predictions,
+                                   predictions=predictions, model="pk",
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
@@ -380,7 +382,7 @@ def od_form():
 
         if (len(error) == 0):
             return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="od",
-                                   predictions=predictions,
+                                   predictions=predictions, model="od",
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
             return render_template('index.html', error=error)
@@ -486,7 +488,7 @@ def success():
 
                         if (len(error) == 0):
                             return render_template('results.html', lat=latitude, lng=longitude, type="csv",
-                                                   disease="db",
+                                                   disease="db", model="db",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -512,7 +514,7 @@ def success():
                         if len(error) == 0:
                             return render_template('results.html', lat=latitude, lng=longitude, type="csv",
                                                    disease="hd",
-                                                   predictions=predictions,
+                                                   predictions=predictions, model="hd",
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
                             return render_template('index.html', error=error)
@@ -536,7 +538,7 @@ def success():
                         if len(error) == 0:
                             return render_template('results.html', lat=latitude, lng=longitude, type="csv",
                                                    disease="pk",
-                                                   predictions=predictions,
+                                                   predictions=predictions, model="pk",
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
                             return render_template('index.html', error=error)
@@ -560,7 +562,7 @@ def success():
 
                             return render_template('results.html', lat=latitude, lng=longitude, type="csv",
                                                    disease="od",
-                                                   predictions=predictions,
+                                                   predictions=predictions, model="od",
                                                    data=data_csv.to_html(classes='mystyle', index=False))
 
                         else:
@@ -658,6 +660,56 @@ def success_ct():
             return render_template('index.html', error=error)
 
 
+# upload function for tuberculosis
+@app.route('/success_tb', methods=['GET', 'POST'])
+def success_tb():
+    global predictions, file_name, data, data_csv, answer
+    error = ''
+    target_img = os.path.join(os.getcwd(), 'static/images/')
+
+    if request.method == 'POST':
+
+        if request.files:
+            file = request.files['file']
+
+            if file and allowed_file(file.filename):
+
+                file.save(os.path.join(target_img, file.filename))
+                img_path = os.path.join(target_img, file.filename)
+                file_name = file.filename
+
+                class_result, prob_result = pred_model_tb(img_path)
+                predictions = (class_result, int(prob_result * 100))
+                answer = predictions[0]
+
+
+            else:
+                error = "Please upload images of jpg , jpeg and png extension only"
+
+        if len(error) == 0:
+            return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
+                                   type="img",
+                                   model="tb",
+                                   predictions=predictions)
+        else:
+            return render_template('index.html', error=error)
+
+
+@app.route('/send-data', methods=['GET', 'POST'])
+def send():
+    upl = Uploader()
+    form_data = request.form
+    name = form_data['name']
+    email = form_data['email']
+    time = form_data['time']
+    hospital = form_data['hospital']
+    message = form_data['message']
+
+    # print(name, email, time, hospital, message)
+    upl.upload(name, email, time, hospital, message)
+    return "Sent"
+
+
 @app.route('/')
 def home():
     global latitude, longitude
@@ -699,6 +751,11 @@ def brain_tumor():
 @app.route('/cataract')
 def cataract():
     return render_template("cataract.html")
+
+
+@app.route('/tuberculosis')
+def tuberculosis():
+    return render_template("tuberculosis.html")
 
 
 # HI hrushikesh

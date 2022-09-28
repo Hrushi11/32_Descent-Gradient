@@ -12,10 +12,10 @@ def current_location():
     send_url = "http://api.ipstack.com/check?access_key=a56ad292248979d7d292dc08aeed5ff0"
     geo_req = requests.get(send_url)
     geo_json = json.loads(geo_req.text)
-    latitude = geo_json['latitude']
-    longitude = geo_json['longitude']
-    city = geo_json['city']
-
+    # latitude = geo_json['latitude']
+    # longitude = geo_json['longitude']
+    # city = geo_json['city']
+    latitude, longitude=18.675256, 73.8066049
     return latitude, longitude
 
 
@@ -39,6 +39,7 @@ def nearby_hospitals(latitude, longitude):
         print("Longitude", place.geo_location['lng'])
         print()
 
+# print(current_location())
 # latitude, longitude = current_location()
 # nearby_hospitals(latitude, longitude)
 # app = Flask(__name__)
