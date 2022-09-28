@@ -45,8 +45,10 @@ def nearby_hospitals(latitude, longitude):
         print("Longitude", place.geo_location['lng'])
         print()
 
+# latitude, longitude = current_location()
+# nearby_hospitals(latitude, longitude)
 # app = Flask(__name__)
-#
+
 #
 # @app.route('/', methods=['GET', 'POST'])
 # def home():

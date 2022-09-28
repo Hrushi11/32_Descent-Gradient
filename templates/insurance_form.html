@@ -41,12 +41,12 @@
 
 <body>
     <section class="home-section">
-      <div class="text"><a href="/"> Disease Prediction</a></div>
+      <div class="text"><a href="/"> Insurance Amount Prediction</a></div>
 
       <div class="container">
-        <header>Heart Disease Prediction</header>
+        <header>Insurance Amount Prediction</header>
 
-        <form action="{{ url_for('hd_form')}}" method="post">
+        <form action="{{ url_for('insurance_form')}}" method="post">
 <!--            <div class="form first">-->
                 <div class="details personal">
                     <span class="title">Personal Details</span>
@@ -60,13 +60,13 @@
                 </div>
 
                 <div class="details ID">
-                    <span class="title">Medical Report</span>
+                    <span class="title">Report</span>
 
                     <div class="fields">
 
                         <div class="input-field">
                             <label for="age">Age</label>
-                            <input type="text" id="age" name="age" type="number" placeholder="Enter no. of Age" value="63" required>
+                            <input type="text" id="age" name="age" type="number" placeholder="Enter no. of Age" value="31" required>
                         </div>
 
                         <div class="input-field">
@@ -75,59 +75,25 @@
                         </div>
 
                         <div class="input-field">
-                            <label for="cp">cp</label>
-                            <input type="text" id="cp" name="cp" type="text" placeholder="Enter CP level" value="3" required>
+                            <label for="bmi">bmi</label>
+                            <input type="text" id="bmi" name="bmi" type="text" placeholder="Enter BMI" value="25.74" required>
                         </div>
 
                         <div class="input-field">
-                            <label for="trestbps">trestbps</label>
-                            <input type="text" id="trestbps" name="trestbps" type="text" placeholder="Enter trestbps value" value="145" required>
+                            <label for="children">children</label>
+                            <input type="text" id="children" name="children" type="text" placeholder="Enter children value" value="0" required>
                         </div>
 
                         <div class="input-field">
-                            <label for="chol">chol</label>
-                            <input type="text" id="chol" name="chol" type="text" placeholder="Enter chol level" value="233" required>
+                            <label for="smoker">smoker</label>
+                            <input type="text" id="smoker" name="smoker" type="text" placeholder="Enter smoker level" value="1" required>
                         </div>
 
                         <div class="input-field">
-                            <label for="fbs">fbs</label>
-                            <input type="text" id="fbs" name="fbs" type="text" placeholder="Enter fbs value" value="1" required>
+                            <label for="region">region</label>
+                            <input type="text" id="region" name="region" type="text" placeholder="Enter region value" value="0" required>
                         </div>
 
-                        <div class="input-field">
-                            <label for="restecg">restecg</label>
-                            <input type="text" id="restecg" name="restecg" type="text" placeholder="Enter restecg value" value="0" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="thalach">thalach</label>
-                            <input type="text" id="thalach" name="thalach" type="text" placeholder="Enter thalach value" value="150" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="exang">exang</label>
-                            <input type="text" id="exang" name="exang" type="text" placeholder="Enter exang value" value="0" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="oldpeak">oldpeak</label>
-                            <input type="text" id="oldpeak" name="oldpeak" type="text" placeholder="Enter oldpeak value" value="2.3" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="slope">slope</label>
-                            <input type="text" id="slope" name="slope" type="text" placeholder="Enter slope value" value="0" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="ca">ca</label>
-                            <input type="text" id="ca" name="ca" type="text" placeholder="Enter ca value" value="0" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="thal">thal</label>
-                            <input type="text" id="thal" name="thal" type="text" placeholder="Enter thal value" value="1" required>
-                        </div>
                     </div>
                     <div class="buttons">
                         <button class="sumbit">

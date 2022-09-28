@@ -2,10 +2,7 @@ import pickle
 import decimal
 import numpy as np
 
-
 insurance_model = pickle.load(open('models/Insurance.sav', 'rb'))
-
-input_data = (31, 1, 25.74, 0, 1, 0)
 
 
 def currencyInIndiaFormat(n):
@@ -54,20 +51,10 @@ def insurance_predict(input_data):
 
     return currencyInIndiaFormat(round(prediction[0], 2))
 
-
-print(insurance_predict(input_data))
+#
+# print(insurance_predict(input_data))
 
 # (['age', 'sex', 'bmi', 'children', 'smoker', 'region', 'insurance'], dtype='object')
-
-
-
-
-
-
-
-
-
-
 
 
 # {'sex':{'male':0,'female':1}}
