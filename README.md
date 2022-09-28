@@ -1,11 +1,22 @@
 # 32 Descent Gradient
 ## _VIIT Hackathon DevCup 2022_
 
-This is our Submission for the VIIT Hackathon. DevCup 2022.
+This is our Submission for the VIIT Hackathon, DevCup 2022.
 
 - **Domain-Name:** Healthcare
+- **Live Link:** [Multi Disease Prediction](https://multidiseaseprediction.azurewebsites.net/)
+- **Video Link:** [Video Link](https://www.youtube.com/watch?v=LUtEgdnLSls&t=255s)
 - **Problem Statement:** Multi-Disease Prediction
 
+## Introduction
+
+One stop solution for most of your medical needs. The features included in the system are Early detection, Awareness, Easy to use, Accurate Predictions, Recommendations, Doctors, Hospitals, Medicals, Access to care, Statistics, Transportation and Multi disease predition.
+
+The services which we offer provides a whopping prediction on 50+ diseases.
+
+## Website
+
+![IMG](https://github.com/Hrushi11/32_Descent-Gradient/blob/main/assets/landing.png?raw=true)
 
 ## Tech
 
@@ -17,7 +28,6 @@ The website uses a number of open source projects to work properly:
 - [Matplotlib] - A low level graph plotting library in python that serves as a visualization utility.
 - [Numpy] - Used for working with arrays
 - [Pandas] - Used for data analysis and associated manipulation of tabular data in Dataframes
-
 
 # Code
 
@@ -54,7 +64,7 @@ Download all the dependencies provided on requirements.txt
 pip install -r .\requirements.txt
 ```
 
-Activated the virtual environment
+Activate the virtual environment
 ```sh
 .\pp\Scripts\activate
 ```
@@ -68,7 +78,7 @@ Run app.py after completing all the steps.
 </a>
 
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+[//]: # (These are the reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    
 [Tensorflow]: <https://www.tensorflow.org/>
