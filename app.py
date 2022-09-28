@@ -6,6 +6,7 @@ import webbrowser
 import numpy as np
 import pandas as pd
 from pnuemonia import pred_model
+from maps import current_location
 from cataract import pred_model_ct
 from brain_tumor import pred_model_bt
 from flask import Flask, render_template, request
@@ -18,6 +19,8 @@ diabetes_model = pickle.load(open('models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('models/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('models/parkinsons_model.sav', 'rb'))
 otherdiseases_model = pickle.load(open('models/otherdiseases.sav', 'rb'))
+
+latitude, longitude = current_location()
 
 
 # reading csv and converting the data to integer
@@ -32,6 +35,7 @@ def open_csv(filepath, filename):
         return data
 
 
+latitude, longitude = current_location()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ALLOWED_EXT = {'jpg', 'jpeg', 'png', 'csv'}
 
@@ -92,7 +96,7 @@ def db_form():
                 predictions = 'The Patient has Diabetes' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('results.html', type="csv", disease="db",
+            return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="db",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -164,7 +168,7 @@ def hd_form():
                 predictions = 'The Patient has Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('results.html', type="csv", disease="hd",
+            return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="hd",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -256,7 +260,7 @@ def pk_form():
                 predictions = 'The Patient has Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('results.html', type="csv", disease="pk",
+            return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="pk",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -374,7 +378,7 @@ def od_form():
             predictions = f"{pred1[0]}" + f'{(round(acc, 3) * 100)}%'
 
         if (len(error) == 0):
-            return render_template('results.html', type="csv", disease="od",
+            return render_template('results.html', lat=latitude, lng=longitude, type="csv", disease="od",
                                    predictions=predictions,
                                    data=data_csv.to_html(classes='mystyle', index=False))
         else:
@@ -391,10 +395,10 @@ def allowed_file(filename):
 # A common upload function for all pneumonia, HD, PK, DB and OD
 @app.route('/success', methods=['GET', 'POST'])
 def success():
-    global predictions, file_name, data, data_csv, answer
+    global predictions, file_name, data, data_csv, answer, latitude, longitude
     error = ''
     target_img = os.path.join(os.getcwd(), 'static/images/')
-
+    latitude, longitude = current_location()
     if request.method == 'POST':
 
         if request.files:
@@ -438,7 +442,8 @@ def success():
                             predictions = 'The Patient has diabetes' + f'   {(round(acc, 3) * 100)}%'
 
                         if (len(error) == 0):
-                            return render_template('results.html', type="csv", disease="db",
+                            return render_template('results.html', lat=latitude, lng=longitude, type="csv",
+                                                   disease="db",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -462,7 +467,8 @@ def success():
                             predictions = 'The Patient has Heart Disease' + f'   {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
-                            return render_template('results.html', type="csv", disease="hd",
+                            return render_template('results.html', lat=latitude, lng=longitude, type="csv",
+                                                   disease="hd",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -485,7 +491,8 @@ def success():
                             predictions = 'The Patient has Parkinsons' + f'      {(round(acc, 3) * 100)}%'
 
                         if len(error) == 0:
-                            return render_template('results.html', type="csv", disease="pk",
+                            return render_template('results.html', lat=latitude, lng=longitude, type="csv",
+                                                   disease="pk",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
                         else:
@@ -508,7 +515,8 @@ def success():
 
                         if len(error) == 0:
 
-                            return render_template('results.html', type="csv", disease="od",
+                            return render_template('results.html', lat=latitude, lng=longitude, type="csv",
+                                                   disease="od",
                                                    predictions=predictions,
                                                    data=data_csv.to_html(classes='mystyle', index=False))
 
@@ -526,10 +534,12 @@ def success():
 
             if len(error) == 0:
                 if ".csv" in file_name:
-                    return render_template('results.html', type="csv", predictions=predictions,
+                    return render_template('results.html', lat=latitude, lng=longitude, type="csv",
+                                           predictions=predictions,
                                            data=data_csv.to_html(classes='mystyle', header=False, index=False))
                 else:
-                    return render_template('results.html', img=file_name, answer=answer, type="img", model="pneumonia",
+                    return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
+                                           type="img", model="pneumonia",
                                            predictions=predictions)
             else:
                 return render_template('index.html', error=error)
@@ -563,7 +573,8 @@ def success_bt():
                 error = "Please upload images of jpg , jpeg and png extension only"
 
         if len(error) == 0:
-            return render_template('results.html', img=file_name, answer=answer, type="img",
+            return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
+                                   type="img",
                                    model="bt",
                                    predictions=predictions)
         else:
@@ -596,7 +607,8 @@ def success_ct():
                 error = "Please upload images of jpg , jpeg and png extension only"
 
         if len(error) == 0:
-            return render_template('results.html', img=file_name, answer=answer, type="img",
+            return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
+                                   type="img",
                                    model="ct",
                                    predictions=predictions)
         else:
