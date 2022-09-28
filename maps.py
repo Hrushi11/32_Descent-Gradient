@@ -1,13 +1,7 @@
 # Importing required libraries
-from googleplaces import GooglePlaces, types, lang
+from googleplaces import GooglePlaces, types
 import requests
 import json
-import webbrowser
-import numpy as np
-import pandas as pd
-import requests
-import json
-from flask import Flask, render_template, request
 
 API_KEY = 'AIzaSyCDjXQWn6VopL_UcO4q6n1MYEOQrY7A7K8'
 
