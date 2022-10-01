@@ -627,37 +627,37 @@ def success_bt():
 
 
 # upload function for brain_tumor
-@app.route('/success_ct', methods=['GET', 'POST'])
-def success_ct():
-    global predictions, file_name, data, data_csv, answer
-    error = ''
-    target_img = os.path.join(os.getcwd(), 'static/images/')
-    latitude, longitude = current_location()
-    if request.method == 'POST':
-
-        if request.files:
-            file = request.files['file']
-
-            if file and allowed_file(file.filename):
-
-                file.save(os.path.join(target_img, file.filename))
-                img_path = os.path.join(target_img, file.filename)
-                file_name = file.filename
-
-                class_result, prob_result = pred_model_ct(img_path)
-                predictions = (class_result, int(prob_result * 100))
-                answer = predictions[0]
-
-            else:
-                error = "Please upload images of jpg , jpeg and png extension only"
-
-        if len(error) == 0:
-            return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
-                                   type="img",
-                                   model="ct",
-                                   predictions=predictions)
-        else:
-            return render_template('index.html', error=error)
+# @app.route('/success_ct', methods=['GET', 'POST'])
+# def success_ct():
+#     global predictions, file_name, data, data_csv, answer
+#     error = ''
+#     target_img = os.path.join(os.getcwd(), 'static/images/')
+#     latitude, longitude = current_location()
+#     if request.method == 'POST':
+#
+#         if request.files:
+#             file = request.files['file']
+#
+#             if file and allowed_file(file.filename):
+#
+#                 file.save(os.path.join(target_img, file.filename))
+#                 img_path = os.path.join(target_img, file.filename)
+#                 file_name = file.filename
+#
+#                 class_result, prob_result = pred_model_ct(img_path)
+#                 predictions = (class_result, int(prob_result * 100))
+#                 answer = predictions[0]
+#
+#             else:
+#                 error = "Please upload images of jpg , jpeg and png extension only"
+#
+#         if len(error) == 0:
+#             return render_template('results.html', lat=latitude, lng=longitude, img=file_name, answer=answer,
+#                                    type="img",
+#                                    model="ct",
+#                                    predictions=predictions)
+#         else:
+#             return render_template('index.html', error=error)
 
 
 # upload function for tuberculosis
